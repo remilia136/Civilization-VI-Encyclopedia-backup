@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name='author' content="Remilia136">
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/react/16.13.1/umd/react.production.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/react-dom/16.13.1/umd/react-dom.production.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/babel-standalone/7.0.0-beta.3/babel.min.js"></script>
+    <style>
+        #root {
+            margin-left: 100px;
+            padding: 0;
+        }
+
+        .Top {
+            overflow-y: auto;
+            background-color: rgb(58, 1, 1);
+            width: 1086px;
+            height: 55px;
+            padding-left: 20px;
+            position: absolute;
+            left: 212px;
+            top: 53px;
+            z-index: 1;
+        }
+
+        .Left {
+            overflow-y: auto;
+            background-color: rgb(58, 1, 1);
+            /* height: 1000px;*/
+            width: 200px;
+            float: left;
+            position: absolute;
+            left: 212px;
+            top: 108px;
+            z-index: 1;
+            min-height: 1060px;
+        }
+
+        .Right {
+            border: 20px solid;
+            border-image: url("./parchment_patternbright.png");
+            background-image: url("./parchment_patternbright.png");
+            background-size: 256px 256px;
+            background-repeat: repeat;
+            min-height: 1020px;
+            width: 867px;
+            float: left;
+            position: absolute;
+            left: 411px;
+            top: 108px;
+            z-index: 0;
+        }
+
+        .TopButton {
+            display: inline-block;
+            position: relative;
+            bottom: 8px;
+            width: 50px;
+            height: 50px;
+            margin-top: 30px;
+            margin-right: 3px;
+            background-image: url('./launchbar_hook_button1.png');
+            background-size: 100% 100%;
+
+        }
+        .TopButton:hover{
+            background-image: url('./launchbar_hook_button2.png');
+        }
+
+        .LeftButtonBo {
+            padding: 0;
+            margin-bottom: 2px;
+            height: 4px;
+            width: 172px;
+            border: 14px solid;
+            border-image: url("./controls_optionframe.png") 39 48 39 48 fill;
+            border-image-repeat: stretch;
+            text-align: left;
+            position: relative;
+            right: 12px;
+            bottom: 13px;
+        }
+        .LeftP{
+            display: inline-block;
+        }
+        .Main {
+            margin-left: 100px;
+            width: 1000px;
+            height: 1050px;
+            border: 59px solid;
+            border-image: url("./controls_windowtitle.png") 165 fill;
+            border-image-repeat: stretch;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        #composite_tabledge {
+            position: absolute;
+            height: 60px;
+            width: 1100px;
+            top: 35px;
+            left: 220px;
+            z-index: 2;
+        }
+
+        .topbuttons {
+            position: absolute;
+            top: 30px;
+            z-index: 3;
+        }
+
+        .search {
+            height: 20px;
+            width: 156px;
+            border-width: 13px 15px 13px 25px;
+            border-style: solid;
+            border-image: url('./controls_search2.png') 12 30 12 75 fill;
+            border-image-repeat: stretch;
+            color: #fff;
+            background-color: rgb(58, 1, 1);
+        }
+
+        .option {
+            margin: 0;
+            border: 12px solid;
+            border-image: url("./controls_buttoncontrol_brown_normal.png") 33 fill;
+            border-image-repeat: stretch;
+            color: white;
+            height: 7px;
+            width: 176px;
+            text-align: left;
+            line-height: 5px;
+            /*background-color: rgb(58, 1, 1);*/
+            font-size: 2px;
+        }
+        .option:hover{
+            border-image: url("./controls_buttoncontrol_brown_hover.png") 33 fill;
+        }
+        .rightinner {
+            min-height: 980px;
+            border: 17px solid;
+            border-image: url("./pageframe.png") 48 fill;
+            border-image-repeat: stretch;
+        }
+
+        body {
+            background-image: url("./parchment_patternbright.png");
+            background-size: 256px 256px;
+            background-repeat: repeat;
+        }
+
+        .tbimg {
+            position: relative;
+            top: 8px;
+            left: 10px;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div id='root'></div>
+    <script type='text/babel'>
+        const { useState, useEffect } = window.React
+        //const array = [1, 2, 3, 4, 5, 6, 7, 8]
+        const barray = ['概念', '文明/领袖', '城邦', '区域', '建筑', '奇观和项目', '单位', '单位强化', '伟人', '科技', '市政', '政体和政策', '宗教', '地形和地貌', '资源', '改良设施和路线', '总督', '历史时刻']
+        const larray = ['模式', '迭起兴衰', '城市', '世界', '战斗', '空战', '单位移动力', '科技值与科学', '文化值和市政', '金币和经济', '信仰值和宗教', '外交', '城邦', '贸易', '政体和政策']
+        const array = [
+            {
+                name : "概念",
+                src:'./topbuttons/gainian.webp',
+                contain : [
+                    {
+                        name : "模式",
+                        contain : [
+                            {
+                            name : "秘密结社",
+                            contain : {}
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                name : "文明",
+                src:'./topbuttons/wenminglingxiu.webp',
+                contain:[
+
+                ]
+            },
+            {
+                name : "城邦",
+                src:'./topbuttons/chengbang.webp',
+                contain : [
+
+                ]
+            },
+            {
+                name : "区域",
+                src:'./topbuttons/quyu.webp',
+                contain :[]
+            },
+            {
+                name : "建筑",
+                src:'./topbuttons/jianzhu.webp',
+                contain : []
+            },
+            {
+                name : "奇观和项目",
+                src:'./topbuttons/qiguanhexiangmu.webp',
+                contain : []
+            },
+            {
+                name : "单位",
+                src:'./topbuttons/danwei.webp',
+                contain : []
+            },
+            {
+                name : "单位强化",
+                src:'./topbuttons/danweiqianghua.webp',
+                contain : []
+            },
+            {
+                name : "伟人",
+                src:'./topbuttons/weiren.webp',
+                contain : []
+            },
+            {
+                name : "科技",
+                src:'./topbuttons/keji.webp',
+                contain : []
+            },
+            {
+                name : "市政",
+                src:'./topbuttons/shizheng.webp',
+                contain : []
+            },
+            {
+                name : "政体与政策",
+                src:'./topbuttons/zhengtiyuzhengce.webp',
+                contain : []
+            },
+            {
+                name : "宗教",
+                src:'./topbuttons/zongjiao.webp',
+                contain : []
+            },
+            {
+                name : "地形和地貌",
+                src:'./topbuttons/dixinghedimao.webp',
+                contain : []
+            },
+            {
+                name : "资源",
+                src:'./topbuttons/ziyuan.webp',
+                contain : []
+            },
+            {
+                name : "改良设施和路线",
+                src:'./topbuttons/gailiangsheshiheluxian.webp',
+                contain : []
+            },
+            {
+                name : "总督",
+                src:'./topbuttons/zongdu.webp',
+                contain : []
+            },
+            {
+                name : "历史时刻",
+                src:'./topbuttons/lishishike.webp',
+                contain : []
+            },
+        ]
+        function Main(props) {
+            const [Chosen , setChosen] = useState('概念')
+            function MainOnClick(name){
+                setChosen(name)
+                console.log(Chosen)
+            }
+            const TopButtons = array.map((member)=>{
+                return <TopButton src={member.src} title={member.name} MainOnClick = {MainOnClick}/>
+            })// 上方按钮的react对象
+
+
+
+            //const topbuttons = 
+            return <div class='Main'>
+                <img src='./composite_tabledge2.png' id='composite_tabledge' />
+                <div class='topbuttons'>
+                    {TopButtons}
+                </div>
+                <Top />
+                <Left />
+                <Right />
+
+            </div>
+        }
+        function Top(props) {
+
+            return <div class='Top'>
+
+
+
+            </div>
+        }
+        function Left(props) {                      //左栏
+
+            const buttons = larray.map((num) => {
+                return <LeftButton value={num} />
+            })
+            return <div class='Left'>
+
+                <input type='text' class='search' />
+                <p class='option'>开始</p>
+                {buttons}
+            </div>
+        }
+        function Right(props) {                 //右栏
+            return <div class='Right'><div class='rightinner' ></div></div>
+        }
+        function TopButton(props) {
+            function TOnclick(){
+                props.MainOnClick(props.title)
+            }
+            return <div class='TopButton'><img src={props.src} class='tbimg' title = {props.title} onClick={TOnclick}/></div>
+        }
+        function LeftButton(props) {
+            return <div class="option"><div class='LeftButtonBo'><p class='LeftP'>{props.value}</p></div></div>
+        }
+        ReactDOM.render(
+            <Main />,
+            document.getElementById('root')
+        )
+        console.log(array[0].name)
+    </script>
+</body>
+
+</html>

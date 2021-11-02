@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name='author' content="Remilia136">
-
+    <link rel="icon" href="favicon.ico" type ="image/x-icon">
     <script src="https://cdn.bootcdn.net/ajax/libs/react/16.13.1/umd/react.production.min.js"></script>
     <script src="https://cdn.bootcdn.net/ajax/libs/react-dom/16.13.1/umd/react-dom.production.min.js"></script>
     <script src="https://cdn.bootcdn.net/ajax/libs/babel-standalone/7.0.0-beta.3/babel.min.js"></script>
@@ -66,7 +66,8 @@
             background-size: 100% 100%;
 
         }
-        .TopButton:hover{
+
+        .TopButton:hover {
             background-image: url('./launchbar_hook_button2.png');
         }
 
@@ -83,9 +84,31 @@
             right: 12px;
             bottom: 13px;
         }
-        .LeftP{
+
+        .LeftP {
             display: inline-block;
         }
+
+        .LExtendButton {
+            background-image: url("./controls_expandbutton.png");
+            background-size: cover;
+            width: 22px;
+            height: 22px;
+            float: right;
+            position: relative;
+            bottom: 9px;
+        }
+
+        .LExtendButton_ {
+            background-image: url("./controls_expandbutton_.png");
+            background-size: cover;
+            width: 22px;
+            height: 22px;
+            float: right;
+            position: relative;
+            bottom: 9px;
+        }
+
         .Main {
             margin-left: 100px;
             width: 1000px;
@@ -136,9 +159,11 @@
             /*background-color: rgb(58, 1, 1);*/
             font-size: 2px;
         }
-        .option:hover{
+
+        .option:hover {
             border-image: url("./controls_buttoncontrol_brown_hover.png") 33 fill;
         }
+
         .rightinner {
             min-height: 980px;
             border: 17px solid;
@@ -157,7 +182,6 @@
             top: 8px;
             left: 10px;
         }
-        
     </style>
 </head>
 
@@ -165,135 +189,214 @@
     <div id='root'></div>
     <script type='text/babel'>
         const { useState, useEffect } = window.React
-        //const array = [1, 2, 3, 4, 5, 6, 7, 8]
-        const barray = ['概念', '文明/领袖', '城邦', '区域', '建筑', '奇观和项目', '单位', '单位强化', '伟人', '科技', '市政', '政体和政策', '宗教', '地形和地貌', '资源', '改良设施和路线', '总督', '历史时刻']
-        const larray = ['模式', '迭起兴衰', '城市', '世界', '战斗', '空战', '单位移动力', '科技值与科学', '文化值和市政', '金币和经济', '信仰值和宗教', '外交', '城邦', '贸易', '政体和政策']
         const array = [
             {
-                name : "概念",
-                src:'./topbuttons/gainian.webp',
-                contain : [
+                name: "概念",
+                src: './topbuttons/gainian.webp',
+                content: [
                     {
-                        name : "模式",
-                        contain : [
+                        name: "模式",
+                        content: [
                             {
-                            name : "秘密结社",
-                            contain : {}
+                                name: "秘密结社",
+                                contain: {}
+                            },
+                            {
+                                name: "行业,垄断与公司",
+                                contain: {}
+                            },
+                        ]
+                    },
+                    {
+                        name: "迭起兴衰",
+                        content: [
+                            {
+                                name: "",
+                                contain: {}
+                            }
+                        ]
+                    },
+                    {
+                        name: "城市",
+                        content: [
+                            {
+                                name: "",
+                                contain: {}
+                            }
+                        ]
+                    },
+                    {
+                        name: "世界",
+                        content: [
+                            {
+                                name: "",
+                                contain: {}
+                            }
+                        ]
+                    },
+                    {
+                        name: "战斗",
+                        content: [
+                            {
+                                name: "",
+                                contain: {}
+                            }
+                        ]
+                    },
+                    {
+                        name: "空战",
+                        content: [
+                            {
+                                name: "",
+                                contain: {}
+                            }
+                        ]
+                    },
+                    {
+                        name: "单位移动力",
+                        content: [
+                            {
+                                name: "",
+                                contain: {}
+                            }
+                        ]
+                    },
+                    {
+                        name: "科技值与科学",
+                        content: [
+                            {
+                                name: "",
+                                contain: {}
+                            }
+                        ]
+                    },
+                    {
+                        name: "文化值和市政",
+                        content: [
+                            {
+                                name: "",
+                                contain: {}
+                            }
+                        ]
+                    },
+                    {
+                        name: "金币和经济",
+                        content: [
+                            {
+                                name: "",
+                                contain: {}
                             }
                         ]
                     }
                 ]
             },
             {
-                name : "文明",
-                src:'./topbuttons/wenminglingxiu.webp',
-                contain:[
+                name: "文明",
+                src: './topbuttons/wenminglingxiu.webp',
+                content: [
 
                 ]
             },
             {
-                name : "城邦",
-                src:'./topbuttons/chengbang.webp',
-                contain : [
+                name: "城邦",
+                src: './topbuttons/chengbang.webp',
+                content: [
 
                 ]
             },
             {
-                name : "区域",
-                src:'./topbuttons/quyu.webp',
-                contain :[]
+                name: "区域",
+                src: './topbuttons/quyu.webp',
+                content: []
             },
             {
-                name : "建筑",
-                src:'./topbuttons/jianzhu.webp',
-                contain : []
+                name: "建筑",
+                src: './topbuttons/jianzhu.webp',
+                content: []
             },
             {
-                name : "奇观和项目",
-                src:'./topbuttons/qiguanhexiangmu.webp',
-                contain : []
+                name: "奇观和项目",
+                src: './topbuttons/qiguanhexiangmu.webp',
+                content: []
             },
             {
-                name : "单位",
-                src:'./topbuttons/danwei.webp',
-                contain : []
+                name: "单位",
+                src: './topbuttons/danwei.webp',
+                content: []
             },
             {
-                name : "单位强化",
-                src:'./topbuttons/danweiqianghua.webp',
-                contain : []
+                name: "单位强化",
+                src: './topbuttons/danweiqianghua.webp',
+                content: []
             },
             {
-                name : "伟人",
-                src:'./topbuttons/weiren.webp',
-                contain : []
+                name: "伟人",
+                src: './topbuttons/weiren.webp',
+                content: []
             },
             {
-                name : "科技",
-                src:'./topbuttons/keji.webp',
-                contain : []
+                name: "科技",
+                src: './topbuttons/keji.webp',
+                content: []
             },
             {
-                name : "市政",
-                src:'./topbuttons/shizheng.webp',
-                contain : []
+                name: "市政",
+                src: './topbuttons/shizheng.webp',
+                content: []
             },
             {
-                name : "政体与政策",
-                src:'./topbuttons/zhengtiyuzhengce.webp',
-                contain : []
+                name: "政体与政策",
+                src: './topbuttons/zhengtiyuzhengce.webp',
+                content: []
             },
             {
-                name : "宗教",
-                src:'./topbuttons/zongjiao.webp',
-                contain : []
+                name: "宗教",
+                src: './topbuttons/zongjiao.webp',
+                content: []
             },
             {
-                name : "地形和地貌",
-                src:'./topbuttons/dixinghedimao.webp',
-                contain : []
+                name: "地形和地貌",
+                src: './topbuttons/dixinghedimao.webp',
+                content: []
             },
             {
-                name : "资源",
-                src:'./topbuttons/ziyuan.webp',
-                contain : []
+                name: "资源",
+                src: './topbuttons/ziyuan.webp',
+                content: []
             },
             {
-                name : "改良设施和路线",
-                src:'./topbuttons/gailiangsheshiheluxian.webp',
-                contain : []
+                name: "改良设施和路线",
+                src: './topbuttons/gailiangsheshiheluxian.webp',
+                content: []
             },
             {
-                name : "总督",
-                src:'./topbuttons/zongdu.webp',
-                contain : []
+                name: "总督",
+                src: './topbuttons/zongdu.webp',
+                content: []
             },
             {
-                name : "历史时刻",
-                src:'./topbuttons/lishishike.webp',
-                contain : []
+                name: "历史时刻",
+                src: './topbuttons/lishishike.webp',
+                content: []
             },
         ]
         function Main(props) {
-            const [Chosen , setChosen] = useState('概念')
-            function MainOnClick(name){
-                setChosen(name)
-                console.log(Chosen)
+            const [TopChosen, setChosen] = useState(array[0])
+            function MainOnClick(content) {
+                setChosen(content)
+                console.log(TopChosen)
             }
-            const TopButtons = array.map((member)=>{
-                return <TopButton src={member.src} title={member.name} MainOnClick = {MainOnClick}/>
+            const TopButtons = array.map((member) => {
+                return <TopButton content={member} MainOnClick={MainOnClick} />
             })// 上方按钮的react对象
 
-
-
-            //const topbuttons = 
             return <div class='Main'>
                 <img src='./composite_tabledge2.png' id='composite_tabledge' />
                 <div class='topbuttons'>
                     {TopButtons}
                 </div>
                 <Top />
-                <Left />
+                <Left content={TopChosen} />
                 <Right />
 
             </div>
@@ -307,8 +410,8 @@
             </div>
         }
         function Left(props) {                      //左栏
-
-            const buttons = larray.map((num) => {
+            console.log(props.content.content)
+            const buttons = props.content.content.map((num) => {
                 return <LeftButton value={num} />
             })
             return <div class='Left'>
@@ -322,13 +425,32 @@
             return <div class='Right'><div class='rightinner' ></div></div>
         }
         function TopButton(props) {
-            function TOnclick(){
-                props.MainOnClick(props.title)
+            function TOnclick() {
+                props.MainOnClick(props.content)
             }
-            return <div class='TopButton'><img src={props.src} class='tbimg' title = {props.title} onClick={TOnclick}/></div>
+            return <div class='TopButton'><img src={props.content.src} class='tbimg' title={props.content.title} onClick={TOnclick} /></div>
         }
         function LeftButton(props) {
-            return <div class="option"><div class='LeftButtonBo'><p class='LeftP'>{props.value}</p></div></div>
+            const [Class, setClass] = useState("LExtendButton")
+            const options = props.value.content.map((member) => {
+                return <div class='option'>{member.name}</div>
+            })
+            function LBOnclick() {
+                Class === "LExtendButton" ? setClass('LExtendButton_') : setClass('LExtendButton')
+                console.log(props.value.content)
+                console.log(options)
+            }
+            return (
+                <div>
+                    <div class="option" onClick={LBOnclick}>
+                        <div class='LeftButtonBo'>
+                            <p class='LeftP'>{props.value.name}</p>
+                            <div class={Class}></div>
+                        </div>
+                    </div>
+                    {Class === "LExtendButton" ?  null : options}
+                </div>
+            )
         }
         ReactDOM.render(
             <Main />,

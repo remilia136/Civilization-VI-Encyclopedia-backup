@@ -2,29 +2,42 @@
 <html>
 
 <head>
-    <style>
-        .div1 {
-            height: 2000px;
-            width: 1000px;
-            border: 59px solid;
-            border-image: url("./controls_windowtitle.png") 165 fill;
-            border-image-repeat: stretch;
-        }
-        p{
-            font-size: 50px;
-            color: tomato;
-        }
-        p.nihao:hover{
-            color: violet;
-        }
-    </style>
+    <script src="https://cdn.bootcdn.net/ajax/libs/react/16.13.1/umd/react.production.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/react-dom/16.13.1/umd/react-dom.production.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/babel-standalone/7.0.0-beta.3/babel.min.js"></script>
 </head>
-
+<style>
+    input{
+        margin: 0;
+        padding: 0;
+    }
+</style>
 <body>
-    <div>
-        <p class="nihao">hello</p>
-        <p>zaijian</p>
-    </div>
+    <div id="root"></div>
+    <script type="text/babel">
+    const { useState, useEffect,useRef} = window.React
+        function TextInputWithFocusButton() {
+            const inputEl = useRef(null);
+            const [height , setheight] = useState(20)
+            console.log(inputEl.current.offsetHeight);
+            const onButtonClick = () => {
+                // `current` 指向已挂载到 DOM 上的文本输入元素
+                inputEl.current.focus();
+                setheight(height+10)
+            };
+            return (
+                <div>
+                    <input ref={inputEl} type="text" style={{height: height + "px"}} id='123'/>
+                    <button onClick={onButtonClick}>Focus the input</button>
+                </div>
+            );
+        }
+        ReactDOM.render(
+            <TextInputWithFocusButton />,
+            document.getElementById('root')
+        )
+    </script>
+
 </body>
 
 </html>

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name='author' content="Remilia136">
-    <link rel="icon" href="favicon.ico" type ="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
     <script src="https://cdn.bootcdn.net/ajax/libs/react/16.13.1/umd/react.production.min.js"></script>
     <script src="https://cdn.bootcdn.net/ajax/libs/react-dom/16.13.1/umd/react-dom.production.min.js"></script>
     <script src="https://cdn.bootcdn.net/ajax/libs/babel-standalone/7.0.0-beta.3/babel.min.js"></script>
@@ -27,18 +27,22 @@
         }
 
         .Left {
-            overflow-y: auto;
+            
             background-color: rgb(58, 1, 1);
             /* height: 1000px;*/
-            width: 200px;
+            width: 220px;
             float: left;
             position: absolute;
             left: 212px;
             top: 108px;
             z-index: 1;
-            min-height: 1060px;
-        }
+            height: 1060px;
 
+        }
+        .LeftB{
+            overflow-y:scroll;
+            height: 1010px;
+        }
         .Right {
             border: 20px solid;
             border-image: url("./parchment_patternbright.png");
@@ -46,12 +50,19 @@
             background-size: 256px 256px;
             background-repeat: repeat;
             min-height: 1020px;
-            width: 867px;
+            width: 847px;
             float: left;
             position: absolute;
-            left: 411px;
+            left: 431px;
             top: 108px;
             z-index: 0;
+        }
+
+        .rightinner {
+            min-height: 980px;
+            border: 17px solid;
+            border-image: url("./pageframe.png") 48 fill;
+            border-image-repeat: stretch;
         }
 
         .TopButton {
@@ -64,7 +75,7 @@
             margin-right: 3px;
             background-image: url('./launchbar_hook_button1.png');
             background-size: 100% 100%;
-
+            
         }
 
         .TopButton:hover {
@@ -145,7 +156,9 @@
             color: #fff;
             background-color: rgb(58, 1, 1);
         }
-
+        .searchblock{
+            position: sticky;
+        }
         .option {
             margin: 0;
             border: 12px solid;
@@ -164,12 +177,7 @@
             border-image: url("./controls_buttoncontrol_brown_hover.png") 33 fill;
         }
 
-        .rightinner {
-            min-height: 980px;
-            border: 17px solid;
-            border-image: url("./pageframe.png") 48 fill;
-            border-image-repeat: stretch;
-        }
+
 
         body {
             background-image: url("./parchment_patternbright.png");
@@ -188,7 +196,7 @@
 <body>
     <div id='root'></div>
     <script type='text/babel'>
-        const { useState, useEffect } = window.React
+        const { useState, useEffect, useRef } = window.React
         const array = [
             {
                 name: "概念",
@@ -205,6 +213,54 @@
                                 name: "行业,垄断与公司",
                                 contain: {}
                             },
+                            {
+                                name: "英雄与传奇",
+                                contain: {}
+                            },
+                            {
+                                name: "科技和市政随机模式",
+                                contain: {}
+                            },
+                            {
+                                name: "动荡时代",
+                                contain: {}
+                            },
+                            {
+                                name: "丧尸之围",
+                                contain: {}
+                            },
+                            {
+                                name: "蛮族氏族",
+                                contain: {}
+                            },
+                            {
+                                name: "平原氏族",
+                                contain: {}
+                            },
+                            {
+                                name: "林地氏族",
+                                contain: {}
+                            },
+                            {
+                                name: "丘陵氏族",
+                                contain: {}
+                            },
+                            {
+                                name: "漫游氏族",
+                                contain: {}
+                            },
+                            {
+                                name: "丛林氏族",
+                                contain: {}
+                            },
+                            {
+                                name: "战车氏族",
+                                contain: {}
+                            },
+                            {
+                                name: "远航氏族",
+                                contain: {}
+                            }
                         ]
                     },
                     {
@@ -281,6 +337,96 @@
                     },
                     {
                         name: "金币和经济",
+                        content: [
+                            {
+                                name: "",
+                                contain: {}
+                            }
+                        ]
+                    },
+                    {
+                        name: "信仰值和宗教",
+                        content: [
+                            {
+                                name: "",
+                                contain: {}
+                            }
+                        ]
+                    },
+                    {
+                        name: "外交",
+                        content: [
+                            {
+                                name: "",
+                                contain: {}
+                            }
+                        ]
+                    },
+                    {
+                        name: "城邦",
+                        content: [
+                            {
+                                name: "",
+                                contain: {}
+                            }
+                        ]
+                    },
+                    {
+                        name: "贸易",
+                        content: [
+                            {
+                                name: "",
+                                contain: {}
+                            }
+                        ]
+                    },
+                    {
+                        name: "政体和政策",
+                        content: [
+                            {
+                                name: "",
+                                contain: {}
+                            }
+                        ]
+                    },
+                    {
+                        name: "伟人",
+                        content: [
+                            {
+                                name: "",
+                                contain: {}
+                            }
+                        ]
+                    },
+                    {
+                        name: "核武器",
+                        content: [
+                            {
+                                name: "",
+                                contain: {}
+                            }
+                        ]
+                    },
+                    {
+                        name: "旅游业绩",
+                        content: [
+                            {
+                                name: "",
+                                contain: {}
+                            }
+                        ]
+                    },
+                    {
+                        name: "胜利和失败",
+                        content: [
+                            {
+                                name: "",
+                                contain: {}
+                            }
+                        ]
+                    },
+                    {
+                        name: "团队",
                         content: [
                             {
                                 name: "",
@@ -389,7 +535,11 @@
             const TopButtons = array.map((member) => {
                 return <TopButton content={member} MainOnClick={MainOnClick} />
             })// 上方按钮的react对象
-
+            useEffect(
+                () => {
+                    console.log('nihao')
+                }
+            )
             return <div class='Main'>
                 <img src='./composite_tabledge2.png' id='composite_tabledge' />
                 <div class='topbuttons'>
@@ -417,8 +567,10 @@
             return <div class='Left'>
 
                 <input type='text' class='search' />
+            <div class = 'LeftB'>    
                 <p class='option'>开始</p>
                 {buttons}
+            </div>
             </div>
         }
         function Right(props) {                 //右栏
@@ -437,8 +589,6 @@
             })
             function LBOnclick() {
                 Class === "LExtendButton" ? setClass('LExtendButton_') : setClass('LExtendButton')
-                console.log(props.value.content)
-                console.log(options)
             }
             return (
                 <div>
@@ -448,7 +598,7 @@
                             <div class={Class}></div>
                         </div>
                     </div>
-                    {Class === "LExtendButton" ?  null : options}
+                    {Class === "LExtendButton" ? null : options}
                 </div>
             )
         }
